@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{job.title}} - Rashmi Careers</title>
+        {% include 'bootstrap.html' %}
+    </head>
+    <body>
+        <div class="container">
+        <h1 class="text-center mt-2 mb-4"> Rashmi Careers</h1>
+        <h4>Title</h4>
+        
+        <p>{{job.title}}</p>
+        <h4>Location</h4>
+        <p class="lead mt-0">{{job.location}}</p>
+        <h4>Salary</h4>
+        <p>{{job.currency}}{{job.salary}}</p>
+        <h4>Responsibilities</h4>
+        <p>{{job.responsibilities}}</p>
+        <h4>Requirements</h4>
+        <p>{{job.requirements}}</p>
+
+        {% include 'application_form.html' %}
+        </div>
+        {% include 'footer.html' %}
+    </body>
+</html>
