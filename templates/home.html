@@ -14,7 +14,10 @@
   <body>
     {% include 'nav.html' %}
     <h1 class="text-center mt-2 mb-4">{{company_name}} Careers</h1>
-    <img class= "img-fluid" id="banner" src= " https://jovian-careers-website--rrkattimani47.repl.co/static/banner.jpeg">
+    <!-- <img class= "img-fluid" id="banner" src= " https://jovian-careers-website--rrkattimani47.repl.co/static/banner.jpeg"> -->
+    <!-- <img class="img-fluid" id="banner" src="C:/Users/RKATTIMA/Documents/PyhtonScripts/Flask-Careers-Project-/static/banner.jpeg"> -->
+    <img class="img-fluid" id="banner" src="{{ url_for('static', filename='banner.jpeg') }}">
+
     <div class="container">
     
       
