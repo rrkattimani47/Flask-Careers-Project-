@@ -1,10 +1,8 @@
-from flask import Flask, json, render_template, jsonify, request, abort
+from flask import Flask, json, render_template, jsonify, request
 from database import load_jobs_from_db, load_job_from_db, add_application_to_db, delete_application_from_db, get_all_applications
 from sqlalchemy import text
 
-
 app = Flask(__name__)
-
 
 
 @app.route("/")
@@ -51,9 +49,6 @@ def show_all_applications():
 @app.route("/job/<id>/", methods=["GET","POST","DELETE"])
 def delete_application(id):
     application_id_to_delete = request.form.get('application_id')
-
-    if not application_id_to_delete:
-        abort(400, "Bad Request: Missing 'application_id' parameter")
 
     try:
         delete_application_from_db(application_id_to_delete)
