@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Applications</title>
+    {% include 'bootstrap.html' %}
+</head>
+<body>
+    {% include 'nav.html' %}
+
+    <div class="container">
+        <h1 class="text-center mt-2 mb-4">All Applications</h1>
+
+        {% if applications %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>LinkedIn URL</th>
+                        <th>Education</th>
+                        <th>Work Experience</th>
+                        <th>Resume URL</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for application in applications %}
+                        <tr>
+                            <td>{{ application['job_title'] }}</td>
+                            <td>{{ application['full_name'] }}</td>
+                            <td>{{ application['email'] }}</td>
+                            <td>{{ application['linkedin_url'] }}</td>
+                            <td>{{ application['education'] }}</td>
+                            <td>{{ application['work_experience'] }}</td>
+                            <td>{{ application['resume_url'] }}</td>
+                            <td>
+                                <!-- <form method="POST" action="{{ url_for('delete_application', id=application['job_id']) }}"> -->
+                                    <form method="POST" action="{{ url_for('delete_application', id=application['id']) }}">
+                                        <input type="hidden" name="application_id" value="{{ application['id'] }}">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                    
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No applications have been submitted.</p>
+        {% endif %}
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+</html>

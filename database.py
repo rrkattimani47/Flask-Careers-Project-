@@ -52,6 +52,25 @@ def add_application_to_db(job_id, data):
                     "resume_url": data['resume_url']
                 }
             )
-            conn.commit()  # Commit the transaction
+            conn.commit() 
         except Exception as e:
             print(f"Error: {e}")
+
+
+def get_all_applications():
+    with engine.connect() as conn:
+        query = text("SELECT applications.*, jobs.title AS job_title FROM applications JOIN jobs ON applications.job_id = jobs.id")
+        result = conn.execute(query)
+        applications = [dict(row._asdict()) for row in result.fetchall()]
+        return applications
+    
+def delete_application_from_db(application_id):
+    with engine.connect() as conn:
+        try:
+            query = text("DELETE FROM applications WHERE id = :val")
+            conn.execute(query.params(val=application_id))
+            conn.commit()
+        except Exception as e:
+            print(f"Error: {e}")
+
+
